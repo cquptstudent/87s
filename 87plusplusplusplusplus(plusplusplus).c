@@ -1,6 +1,6 @@
 /*
- * version: 5.3
- * 2023 11 17 22:56
+ * version: 5.3.1
+ * 2023 11 18 00:03
  */
 
 #include <conio.h>
@@ -91,7 +91,7 @@ int main(void)
         char choice = getch();
         if (choice == 'N' || choice == 'n')
         {
-            printf("Don't give up! Really quit? enter 'Y' or 'y' to quit.");
+            printf("Don't give up! Really quit? enter 'Y' or 'y' to quit.\n");
             choice = getch();
             if (choice == 'Y' || choice == 'y')
             {
@@ -105,7 +105,6 @@ int main(void)
                 goto Last;
             }
         }
-
     } while (strcmp(a, answer) != 0);
     printf("Right!");
     system("shutdown -a");
