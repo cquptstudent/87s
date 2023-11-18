@@ -1,5 +1,5 @@
 /*
- * version: 5.4 (6.1 dev) (带注释)
+ * version: 5.5 (6.1 dev) (带注释)
  * 2023 11 18 22:33
  */
 
@@ -123,6 +123,7 @@ int main(void)
     } while (strcmp(a, answer) != 0);
     printf("Right!\n"); /*第1关结束*/
     system("shutdown -a");
+    /*5.4新版本：增加lv2*/
     Sleep(2000); /*休息2s*/
     printf("Do you think it is easy?");
     Sleep(2000); /*休息2s*/
@@ -130,6 +131,7 @@ int main(void)
     for (int i = 20; i > 0; i--)
     {
         printf("Level 2 starts\n");
+        /*5.5新修改: lv2界面改变*/
         printf("Wait a few seconds.\n");
         printf("..............................................\n");
         printf("......................%2d......................\n", i);
@@ -169,6 +171,7 @@ void level2(void)
 
     while (strcmp(inputPassword, newPassword) != 0)
     {
+        /*5.3新修改吃掉密码，5.4吃掉密码为100%概率bug修改，5.5增加随机数*/
         printf("Little worm come! The probablity of it comes is %d%%\n", (100 - probablity));
         if (luck > probablity) // 有概率密码被吃掉,这个概率是随机数
         {
@@ -256,7 +259,8 @@ void tryLuck(int num)
         }
         else // 睡眠
         {
-            printf("Good luck!");
+            printf("Good luck!\n");
+            Sleep(5000);
             system("shutdown -h");
         }
     }
