@@ -1,5 +1,5 @@
 /*
- * version: 5.3.1
+ * version: 5.3.2
  * 2023 11 18 00:03
  */
 
@@ -106,7 +106,10 @@ int main(void)
             }
         }
     } while (strcmp(a, answer) != 0);
-    printf("Right!");
+    printf("Right!");//结束输出的话
+    Sleep(10000);//10秒钟后退出
+    //或者是下面这句,有这句不要上面那句
+    system("pause");
     system("shutdown -a");
 Last:
     return 0;
