@@ -1,6 +1,6 @@
 /*
- * version: 5.5 (6.1 dev) (带注释)
- * 2023 11 18 22:33
+ * version: 5.5.2 (6.1 dev) (带注释)
+ * 2023 11 18 23:40
  */
 
 #include <conio.h>
@@ -171,7 +171,7 @@ void level2(void)
 
     while (strcmp(inputPassword, newPassword) != 0)
     {
-        /*5.3新修改吃掉密码，5.4吃掉密码为100%概率bug修改，5.5增加随机数*/
+        /*5.4.0新修改吃掉密码，5.4.1吃掉密码为100%概率bug修改，5.5增加随机数*/
         printf("Little worm come! The probablity of it comes is %d%%\n", (100 - probablity));
         if (luck > probablity) // 有概率密码被吃掉,这个概率是随机数
         {
@@ -208,6 +208,7 @@ void tryLuck(int num)
         printf("Good good!"); /*直接退出*/
         return;
     }
+    
     else
     {
         // 关机
