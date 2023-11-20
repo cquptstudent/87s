@@ -1,6 +1,6 @@
 /*
- * version: 5.5 (6.1 dev) (带注释)
- * 2023 11 18 22:33
+ * version: 5.4.0 (6.1 dev)
+ * 2023 11 18 20:54
  */
 
 #include <conio.h>
@@ -17,13 +17,13 @@ int main(void)
 {
     int time = 1200;
     char a[100];
-    char answer[100] = "I love you"; /*密码*/
+    char answer[100] = "I love you";
     int try_time = 0;
-    system("shutdown -sg -t 1200"); /*关机1200秒*/
+    system("shutdown -sg -t 1200");
     do
     {
         printf("Your computer will shutdown in %d seconds\n", time);
-        for (int i = 0; i < (2000 - time); i++) /*输入2000-time个星号*/
+        for (int i = 0; i < (2000 - time); i++)
         {
             putchar('*');
             Sleep((0.01 * (2000 - time) + i / 100));
@@ -36,7 +36,7 @@ int main(void)
         }
         putchar('\n');
         printf("Please enter the password:");
-        gets_s(a, 100); /*输入密码*/
+        gets_s(a, 100);
         for (int i = 0; i < 50; i++)
         {
             putchar('-');
@@ -44,15 +44,6 @@ int main(void)
         }
         putchar('\n');
         try_time++;
-        /*密码错误1次: 时间变成1100s
-        密码错误2次: 时间变成1000s
-        密码错误3次: 时间变成900s
-        密码错误4次: 时间变成800s
-        密码错误5次: 时间变成300s
-        密码错误6次: 时间变成60s
-        密码错误7次: 时间变成30s
-        8次及以上: 每次10s
-        */
         switch (try_time)
         {
         case 1:
@@ -101,9 +92,9 @@ int main(void)
         {
             break;
         }
-        system("CLS"); /*清除屏幕*/
+        system("CLS");
         printf("Do you want to continue guessing?\nIf no, please enter 'N' or 'n'. If yes, press other key.\n");
-        char choice = getch(); /*输入选项*/
+        char choice = getch();
         if (choice == 'N' || choice == 'n')
         {
             printf("Don't give up! Really quit? enter 'Y' or 'y' to quit.\n");
@@ -111,29 +102,25 @@ int main(void)
             if (choice == 'Y' || choice == 'y')
             {
                 printf("Really?\n");
-                system("shutdown -s -t 10");  /*5.3版本修改: 解决shutdown -a不能解决取消的问题*/
-                for (int i = 10; i >= 0; i--) /*倒计时 10s*/
+                for (int i = 10; i >= 0; i--)
                 {
                     printf("%d\n", i);
                     Sleep(1000);
                 }
+                system("shutdown -s -t 0");
                 goto Last;
             }
         }
     } while (strcmp(a, answer) != 0);
-    printf("Right!\n"); /*第1关结束*/
+    printf("Right!");
     system("shutdown -a");
-    Sleep(2000); /*休息2s*/
+    Sleep(2000);
     printf("Do you think it is easy?");
-    Sleep(2000); /*休息2s*/
     system("CLS");
+    printf("Level 2\n");
     for (int i = 20; i > 0; i--)
     {
-        printf("Level 2 starts\n");
-        printf("Wait a few seconds.\n");
-        printf("..............................................\n");
-        printf("......................%2d......................\n", i);
-        printf("..............................................\n");
+        printf("%d\n", i);
         Sleep(1000);
         system("CLS");
     }
@@ -153,7 +140,6 @@ void level2(void)
     int num = rand() % 10000 + 1;
     printf("When number is in (1000,10000), your computer will shutdown, (1-1000) will sleep\n");
     printf("Your number: %d\n", num);
-    Sleep(2000);
     printf("Wait a few seconds.");
     printf("......................\n");
     tryLuck(num);
@@ -164,18 +150,17 @@ void level2(void)
     char discard[100];
     char newPassword[100] = "I love you";
     char inputPassword[100];
-    int plus = 1 /*概率增加*/;
-    int probablity = rand() % 100 + plus;
+    int probablity = rand() % 100 + 1;
 
     while (strcmp(inputPassword, newPassword) != 0)
     {
-        printf("Little worm come! The probablity of it comes is %d%%\n", (100 - probablity));
-        if (luck > probablity) // 有概率密码被吃掉,这个概率是随机数
+        printf("Little worm come! The probablity of it comes is %d%%\n", (100-probablity));
+        if (luck > probablity) // 有80%-100%概率密码被吃掉
         {
             gets_s(discard, 100);
-            printf("Your password was eaten by a little worm!\n"); /*密码被吃掉*/
+            printf("Your password was eaten by a little worm!\n");
             Sleep(2000);
-            system("CLS"); /*清屏*/
+            system("CLS");
         }
         else
         {
@@ -186,14 +171,13 @@ void level2(void)
             }
             else
             {
-                printf("Please retry!"); /*密码错误，密码被吃掉概率增加1%*/
-                plus++;
+                printf("Please retry!");
             }
             system("CLS");
         }
         printf("Please enter the password!\n");
         luck = rand() % 100 + 1;
-        probablity = rand() % 100 + plus;
+        probablity = rand() % 100 + 1;
     }
 }
 
@@ -202,12 +186,11 @@ void tryLuck(int num)
     /*有90%的概率关机, 9.99%概率直接进入睡眠模式，0.01%直接退出*/
     if (num == 10000)
     {
-        printf("Good good!"); /*直接退出*/
+        printf("Good good!");
         return;
     }
     else
     {
-        // 关机
         printf("You have to wait and stay here without doing anything\n");
         if (num > 9000)
         {
@@ -254,7 +237,7 @@ void tryLuck(int num)
             system("shutdown -s -t 100");
             Notify(10);
         }
-        else // 睡眠
+        else
         {
             printf("Good luck!");
             system("shutdown -h");
@@ -266,10 +249,7 @@ void Notify(int second)
 {
     for (int i = second; i >= 0; i--)
     {
-        printf("Wait a few seconds.\n");
-        printf("..............................................\n");
-        printf("......................%2d......................\n", i);
-        printf("..............................................\n");
+        printf("%d\n", i);
         Sleep(1000);
         system("CLS");
     }
